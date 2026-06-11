@@ -23,13 +23,15 @@ pipeline {
 
         stage('Docker Compose Down') {
             steps {
-                sh 'docker-compose down'
+                sh '''
+                    docker rm -f frontend backend nginx || true
+                '''
             }
         }
 
         stage('Docker Compose Up') {
             steps {
-                sh 'docker-compose up -d'
+                sh 'docker-compose up -d frontend backend nginx'
             }
         }
     }
