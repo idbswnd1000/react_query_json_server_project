@@ -2,6 +2,7 @@ pipeline {
     agent any
 
     stages {
+
         stage('Git Clone') {
             steps {
                 git branch: 'main',
@@ -23,13 +24,13 @@ pipeline {
 
         stage('Docker Compose Build') {
             steps {
-                sh 'docker compose build'
+                sh 'docker-compose build'
             }
         }
 
         stage('Docker Compose Up') {
             steps {
-                sh 'docker compose up -d'
+                sh 'docker-compose up -d'
             }
         }
     }
