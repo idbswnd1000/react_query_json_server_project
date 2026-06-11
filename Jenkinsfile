@@ -2,21 +2,20 @@ pipeline {
     agent any
 
     stages {
-
         stage('Git Clone') {
             steps {
                 git branch: 'main',
-                    url: 'https://github.com/idbswnd1000/react_query_frontend.git'
+                    url: 'https://github.com/idbswnd1000/react_query_json_server_project.git'
             }
         }
 
-        stage('Install') {
+        stage('React Install') {
             steps {
                 sh 'cd frontend && npm install'
             }
         }
 
-        stage('Build') {
+        stage('React Build') {
             steps {
                 sh 'cd frontend && npm run build'
             }
