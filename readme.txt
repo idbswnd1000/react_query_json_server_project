@@ -51,9 +51,23 @@ docker run -d \
   my-jenkins
 
 비밀번호 찾는 코드 cmd창 입력
-docker exec jenkins-server cat /var/jenkins_home/secrets/initialAdminPassword
-\\
+\\docker exec my-jenkins cat /var/jenkins_home/secrets/initialAdminPassword
+
+c1b84ea64053410b94495ab1ac3b16ed
+
 들어가서 왼쪽 install 클릭
-id: uchi
+id: idbswnd1000
 pw: 1111
 이름: 전우치
+
+docker exec -it jenkins-server bash
+
+캐쉬 삭제
+docker rm -f jenkins
+docker rmi -f my-jenkins
+docker volume rm jenkins_home
+docker builder prune -af
+docker system prune -af
+docker build --no-cache -t my-jenkins .
+docker run -d --name jenkins -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock --restart unless-stopped my-jenkins
+docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword

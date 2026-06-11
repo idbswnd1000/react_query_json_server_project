@@ -2,19 +2,35 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
+
+        stage('Git Clone') {
             steps {
                 git branch: 'main',
                     url: 'https://github.com/idbswnd1000/react_query_frontend.git'
             }
         }
 
-        stage('Docker Build & Run') {
+        stage('Install') {
             steps {
-                sh '''
-                    docker compose down
-                    docker compose up -d --build
-                '''
+                sh 'cd frontend && npm install'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'cd frontend && npm run build'
+            }
+        }
+
+        stage('Docker Compose Build') {
+            steps {
+                sh 'docker compose build'
+            }
+        }
+
+        stage('Docker Compose Up') {
+            steps {
+                sh 'docker compose up -d'
             }
         }
     }
