@@ -53,7 +53,7 @@ docker run -d \
 비밀번호 찾는 코드 cmd창 입력
 \\docker exec my-jenkins cat /var/jenkins_home/secrets/initialAdminPassword
 
-c1b84ea64053410b94495ab1ac3b16ed
+53f1bf5950b14d2f93be30650a8113d1
 
 들어가서 왼쪽 install 클릭
 id: idbswnd1000
